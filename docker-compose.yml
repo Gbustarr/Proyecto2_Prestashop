@@ -1,16 +1,21 @@
-version: '3.1'
+version: '3.9'
 
 services:
   prestashop:
     image: prestashop/prestashop:latest
     ports:
-      - "8080:80"
+      - "80:80"
     environment:
-      - DB_SERVER=prestashop-db
+      - DB_SERVER= prestashop-db
+      - DB_USER= prestashop
+      - DB_PASSWD= prestashoppass
+      - DB_NAME= prestashop
     volumes:
       - ./data/prestashop:/var/www/html
     networks:
       - prestashop-net
+    depends_on:
+      - prestashop-db
 
   prestashop-db:
     image: mysql:5.7
