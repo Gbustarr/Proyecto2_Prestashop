@@ -5,6 +5,8 @@ services:
     image: prestashop/prestashop:latest
     ports:
       - "80:80"
+    expose:
+      - 80
     environment:
       - DB_SERVER= prestashop-db
       - DB_USER= prestashop
