@@ -21,6 +21,8 @@ services:
 
   prestashop-db:
     image: mysql:5.7
+    env_file: 
+      - ip_prestashop.env
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: prestashop
@@ -30,6 +32,8 @@ services:
       - ./data/prestashop_DB:/var/lib/mysql
     networks:
       - prestashop-net
+    command: bash -c "chmod +x /var/lib/mysql/ip_setup.sh"
+    entrypoint: ["/var/lib/mysql/ip_setup.sh"]
 
 networks:
   prestashop-net:
