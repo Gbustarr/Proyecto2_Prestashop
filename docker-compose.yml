@@ -3,6 +3,7 @@ version: '3.9'
 services:
   prestashop:
     image: prestashop/prestashop:latest
+    container_name: contenedor_prestashop
     ports:
       - "80:80"
     expose:
@@ -21,6 +22,7 @@ services:
 
   prestashop-db:
     image: mysql:5.7
+    container_name: contenedor_db
     env_file: 
       - ip_prestashop.env
     environment:
@@ -30,10 +32,9 @@ services:
       MYSQL_PASSWORD: prestashoppass
     volumes:
       - ./data/prestashop_DB:/var/lib/mysql
-      - ./data/prestashop_DB/ip_setup.sh:/docker-entrypoint-initdb.d/ip_setup.sh
+      - ./data/prestashop_DB/ip_setup.sh:/ip_setup.sh
     networks:
       - prestashop-net  
-    #entrypoint: ["/bin/sh","-c","docker-entrypoint.sh && docker-entrypoint-initdb.d/ip_setup.sh"]
 
 networks:
   prestashop-net:
