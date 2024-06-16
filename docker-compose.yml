@@ -23,7 +23,7 @@ services:
   prestashop-db:
     image: mysql:5.7
     container_name: contenedor_db
-    env_file: 
+    env_file:
       - ip_prestashop.env
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
@@ -34,7 +34,7 @@ services:
       - ./data/prestashop_DB:/var/lib/mysql
       - ./data/prestashop_DB/ip_setup.sh:/ip_setup.sh
     networks:
-      - prestashop-net  
+      - prestashop-net
 
 networks:
   prestashop-net:
