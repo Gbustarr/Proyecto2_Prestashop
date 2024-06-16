@@ -6,7 +6,13 @@ if [ -z "$PRESTASHOP_IP" ]; then
   exit 1
 fi
 
-echo "Estableciendo variables de entorno"
+echo "Esperando a que servicio mysql esté activo"
+
+while ! socat -z "localhost" "3306"; do
+  sleep 1
+done
+
+echo "Mysql activo, Estableciendo variables de entorno"
 
 # Configuración de conexión a la base de datos
 DB_USER="root"
@@ -19,7 +25,7 @@ echo user $DB_USER, pass $DB_PASSWORD, DB $DB_NAME , IP $PRESTASHOP_IP
 SQL_QUERY="UPDATE ps_configuration SET value = '${PRESTASHOP_IP}' WHERE name IN ('PS_SHOP_DOMAIN', 'PS_SHOP_DOMAIN_SSL');"
 
 # Ejecutar la consulta SQL utilizando la variable de entorno
-mysql -u $DB_USER -p$DB_PASSWORD
+mysql -u $DB_USER -p$DB_PASSWORD $DB_NAME  -h localhost -e "${SQL_QUERY}"
 
 # Verificar si el comando mysql se ejecutó correctamente
 if [ $? -eq 0 ]; then

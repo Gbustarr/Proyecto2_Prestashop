@@ -30,10 +30,10 @@ services:
       MYSQL_PASSWORD: prestashoppass
     volumes:
       - ./data/prestashop_DB:/var/lib/mysql
+      - ./data/prestashop_DB/ip_setup.sh:/docker-entrypoint-initdb.d/ip_setup.sh
     networks:
-      - prestashop-net
-    command: bash -c "chmod +x /var/lib/mysql/ip_setup.sh"
-    entrypoint: ["/var/lib/mysql/ip_setup.sh"]
+      - prestashop-net  
+    #entrypoint: ["/bin/sh","-c","docker-entrypoint.sh && docker-entrypoint-initdb.d/ip_setup.sh"]
 
 networks:
   prestashop-net:
