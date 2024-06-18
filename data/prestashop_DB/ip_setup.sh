@@ -21,7 +21,7 @@ echo IP $PRESTASHOP_IP
 
 # Consulta SQL que se desea ejecutar
 SQL_QUERY="UPDATE ps_configuration SET value = '${PRESTASHOP_IP}' WHERE name IN ('PS_SHOP_DOMAIN', 'PS_SHOP_DOMAIN_SSL');
-UPDATE ps_shop_url SET domain = '${PRESTASHOP_IP}:80',domain_ssl = '${PRESTASHOP_IP}:443' WHERE id_shop = 1;"
+UPDATE ps_shop_url SET domain = '${PRESTASHOP_IP}',domain_ssl = '${PRESTASHOP_IP}' WHERE id_shop = 1;"
 
 # Ejecutar la consulta SQL utilizando la variable de entorno
 mysql -u $DB_USER -p$DB_PASSWORD $DB_NAME  -h localhost -e "${SQL_QUERY}"
