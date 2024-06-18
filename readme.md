@@ -19,4 +19,9 @@ sh change_ip.sh
 
 ## Uso
 
-Tu página de Prestashop debería estar activa en la ip que proporcionaste en el archivo ip_prestashop.env
+Tu página de Prestashop debería estar activa en la ip que proporcionaste en el archivo ip_prestashop.env.
+
+## Problemas con imagenes
+
+En caso de presentar problemas con la carga de imagenes, ingresar como administrador a la url /admin537dwaq49zcbgqebish
+(oknmil@gmail.com - 12345mM@321) y en el apartado Configurar seleccionar Párametros de la tienda, Tráfico & SEO y desactivar URL Amigable en Configuración de URLs
